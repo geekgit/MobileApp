@@ -9,10 +9,41 @@
         android:layout_height="wrap_content"
         android:id="@+id/FetchGPSButton" />
     <TextView
+        android:text="GPS"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1" />
+    <TextView
+        android:text="N/A"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/GPSRawTextView" />
+    <TextView
+        android:text="Адрес"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4" />
+    <TextView
+        android:text="N/A"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/AddressTextView" />
+    <TextView
+        android:text="Журнал сообщений"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5" />
+    <TextView
         android:text="Text"
         android:layout_width="match_parent"
-        android:layout_height="411.7dp"
+        android:layout_height="309.1dp"
         android:id="@+id/GPSDataTextView"
         android:layout_marginBottom="274.0dp"
-        android:layout_marginRight="9.7dp" />
+        android:layout_marginRight="0.0dp"
+        android:layout_marginTop="0.0dp" />
 </LinearLayout>

@@ -19,6 +19,8 @@ namespace AndroidApi15Project
 		LocationManager _locationManager;
 		String _locationProvider;
 		TextView GPSTV;
+		TextView GPSRawTV;
+		TextView AddressTV;
 		int LinesCount=0;
 		const int LINES_COUNT_LIMIT=5;
 		public void AddText(string Data)
@@ -42,25 +44,32 @@ namespace AndroidApi15Project
 				StringBuilder deviceAddress = new StringBuilder();
 				for (int i = 0; i < address.MaxAddressLineIndex; i++)
 				{
-					deviceAddress.Append(address.GetAddressLine(i))
-						.AppendLine(",");
+					deviceAddress.Append (address.GetAddressLine (i));
+					if (i != address.MaxAddressLineIndex - 1)
+						deviceAddress.AppendLine (",");
+					else
+						deviceAddress.Append (".");
 				}
-				AddText(String.Format("Текущий примерный адрес устройства: {0}",deviceAddress.ToString()));
+				string strAdr = deviceAddress.ToString ();
+				AddText(String.Format("[LocationWorks] Текущий примерный адрес устройства: {0}",strAdr));
+				AddressTV.Text = strAdr;
 			}
 			else
 			{
-				AddText("Невозможно определить текущее местоположение!");
+				AddText("[LocationWorks] Невозможно определить текущее местоположение!");
 			}
 		}
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 			SetContentView (Resource.Layout.GPSInfoLayout);
+			GPSRawTV = FindViewById<TextView> (Resource.Id.GPSRawTextView);
+			AddressTV = FindViewById<TextView> (Resource.Id.AddressTextView);
 			Button FetchButton = FindViewById<Button> (Resource.Id.FetchGPSButton);
 			GPSTV = FindViewById<TextView> (Resource.Id.GPSDataTextView);
 			FetchButton.Click += delegate {
-				AddText("Click");
-				if (_currentLocation == null) AddText("Пока нельзя определить текущее местоположение");
+				AddText("[Click] Press");
+				if (_currentLocation == null) AddText("[Click] Пока нельзя определить текущее местоположение");
 				else LocationWorks();
 			};
 			ClearText ();
@@ -87,7 +96,7 @@ namespace AndroidApi15Project
 			IList<string> acceptableLocationProviders = _locationManager.GetProviders(criteriaForLocationService, true);
 		
 			foreach (string provider in acceptableLocationProviders) {
-				AddText(String.Format("Доступные гео-провайдеры: {0}",provider));
+				AddText(String.Format("[InitializeLocationManager] Доступные гео-провайдеры: {0}",provider));
 			}
 			if (acceptableLocationProviders.Any ()) {
 				if (acceptableLocationProviders.Contains ("network"))
@@ -98,7 +107,7 @@ namespace AndroidApi15Project
 					_locationProvider = acceptableLocationProviders.First ();//использование иного геопровайдера
 			}
 			else _locationProvider = ""; //GPS нет
-			AddText (String.Format("Используем '{0}' геопровайдер", _locationProvider));
+			AddText (String.Format("[InitializeLocationManager] Используем '{0}' геопровайдер", _locationProvider));
 		}
 
 		public void OnLocationChanged(Location location)
@@ -106,12 +115,14 @@ namespace AndroidApi15Project
 			_currentLocation = location;
 			if (_currentLocation == null)
 			{
-				AddText("Невозможно определить текущее положение.");
+				AddText("[OnLocationChanged] Невозможно определить текущее положение.");
 			}
 			else
 			{
 				string geo = String.Format ("{0},{1}", _currentLocation.Latitude.ToString (), _currentLocation.Longitude.ToString ());
-				AddText(geo);
+				AddText(String.Format("[OnLocationChanged] {0}",geo));
+				GPSRawTV.Text = geo;
+				LocationWorks ();
 			}
 		}
 		public void OnProviderDisabled(string provider) {}
