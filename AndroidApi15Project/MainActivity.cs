@@ -20,6 +20,11 @@ namespace AndroidApi15Project
 				var GPSIntent=new Intent(this,typeof(GPSActivity));
 				StartActivity(GPSIntent);
 			};
+			Button WebButton = FindViewById<Button> (Resource.Id.OpenWebRequestActivityButton);
+			WebButton.Click += delegate {
+				var WebIntent=new Intent(this,typeof(WebRequestActivity));
+				StartActivity(WebIntent);
+			};
 		}
 	}
 }
