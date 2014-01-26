@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidApi15Project", "AndroidApi15Project\AndroidApi15Project.csproj", "{A4BFC9D6-05B2-4898-B6E1-C94D192BE08C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A4BFC9D6-05B2-4898-B6E1-C94D192BE08C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4BFC9D6-05B2-4898-B6E1-C94D192BE08C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4BFC9D6-05B2-4898-B6E1-C94D192BE08C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4BFC9D6-05B2-4898-B6E1-C94D192BE08C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = AndroidApi15Project\AndroidApi15Project.csproj
+	EndGlobalSection
+EndGlobal
