@@ -46,7 +46,7 @@ namespace AndroidApi15Project
 			catch(Exception E) {
 				data = E.InnerException.InnerException.Message;
 			}
-			RunOnUiThread (/*() => tv.Text = data*/()=>tv.TextFormatted=Html.FromHtml(data));
+			RunOnUiThread (()=>tv.TextFormatted=Html.FromHtml(data));
 		}
 		public void AfterDownloadAction(object sender, DownloadStringCompletedEventArgs args)
 		{
@@ -59,7 +59,7 @@ namespace AndroidApi15Project
 			catch(Exception E) {
 				data = E.InnerException.InnerException.Message;
 			}
-			RunOnUiThread (/*() => tv.Text = data*/()=>tv.TextFormatted=Html.FromHtml(data));
+			RunOnUiThread (()=>tv.TextFormatted=Html.FromHtml(data));
 		}
 		protected override void OnCreate (Bundle bundle)
 		{
