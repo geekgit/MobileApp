@@ -3,13 +3,8 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <Button
-        android:text="Получить адрес"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/FetchGPSButton" />
     <TextView
-        android:text="GPS"
+        android:text="GPS:"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,7 +16,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/GPSRawTextView" />
     <TextView
-        android:text="Примерный адрес"
+        android:text="Примерный адрес:"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,7 +28,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/AddressTextView" />
     <TextView
-        android:text="Журнал сообщений"
+        android:text="Журнал сообщений:"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

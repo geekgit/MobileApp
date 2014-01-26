@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Locations;
+using Android.Util;
 
 namespace AndroidApi15Project
 {
@@ -34,6 +36,19 @@ namespace AndroidApi15Project
 			GPSTV.Text = "";
 			LinesCount = 0;
 		}
+		public string FormatAddress(Address address)
+		{
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < address.MaxAddressLineIndex; i++)
+			{
+				sb.Append (address.GetAddressLine (i));
+				if (i != address.MaxAddressLineIndex - 1)
+					sb.AppendLine (",");
+				else
+					sb.Append (".");
+			}
+			return sb.ToString ();
+		}
 		async void LocationWorks()
 		{
 			Geocoder geocoder = new Geocoder(this);
@@ -41,22 +56,14 @@ namespace AndroidApi15Project
 			Address address = addressList.FirstOrDefault();
 			if (address != null)
 			{
-				StringBuilder deviceAddress = new StringBuilder();
-				for (int i = 0; i < address.MaxAddressLineIndex; i++)
-				{
-					deviceAddress.Append (address.GetAddressLine (i));
-					if (i != address.MaxAddressLineIndex - 1)
-						deviceAddress.AppendLine (",");
-					else
-						deviceAddress.Append (".");
-				}
-				string strAdr = deviceAddress.ToString ();
-				AddText(String.Format("[LocationWorks] Текущий примерный адрес устройства: {0}",strAdr));
+
+				string strAdr = FormatAddress (address);
+				Log.Debug ("[LocationWorks]", String.Format ("Текущий примерный адрес устройства: {0}", strAdr));
 				AddressTV.Text = strAdr;
 			}
 			else
 			{
-				AddText("[LocationWorks] Невозможно определить текущее местоположение!");
+				Log.Debug("[LocationWorks]","Невозможно определить текущее местоположение!");
 			}
 		}
 		protected override void OnCreate (Bundle bundle)
@@ -65,13 +72,7 @@ namespace AndroidApi15Project
 			SetContentView (Resource.Layout.GPSInfoLayout);
 			GPSRawTV = FindViewById<TextView> (Resource.Id.GPSRawTextView);
 			AddressTV = FindViewById<TextView> (Resource.Id.AddressTextView);
-			Button FetchButton = FindViewById<Button> (Resource.Id.FetchGPSButton);
 			GPSTV = FindViewById<TextView> (Resource.Id.GPSDataTextView);
-			FetchButton.Click += delegate {
-				AddText("[Click] Press");
-				if (_currentLocation == null) AddText("[Click] Пока нельзя определить текущее местоположение");
-				else LocationWorks();
-			};
 			ClearText ();
 			InitializeLocationManager();
 		}
@@ -96,7 +97,7 @@ namespace AndroidApi15Project
 			IList<string> acceptableLocationProviders = _locationManager.GetProviders(criteriaForLocationService, true);
 		
 			foreach (string provider in acceptableLocationProviders) {
-				AddText(String.Format("[InitializeLocationManager] Доступные гео-провайдеры: {0}",provider));
+				AddText(String.Format("Доступные гео-провайдеры: {0}",provider));
 			}
 			if (acceptableLocationProviders.Any ()) {
 				if (acceptableLocationProviders.Contains ("network"))
@@ -107,7 +108,7 @@ namespace AndroidApi15Project
 					_locationProvider = acceptableLocationProviders.First ();//использование иного геопровайдера
 			}
 			else _locationProvider = ""; //GPS нет
-			AddText (String.Format("[InitializeLocationManager] Используем '{0}' геопровайдер", _locationProvider));
+			AddText (String.Format("Используем '{0}' геопровайдер", _locationProvider));
 		}
 
 		public void OnLocationChanged(Location location)
@@ -115,12 +116,12 @@ namespace AndroidApi15Project
 			_currentLocation = location;
 			if (_currentLocation == null)
 			{
-				AddText("[OnLocationChanged] Невозможно определить текущее положение.");
+				Log.Debug("[OnLocationChanged]", "Невозможно определить текущее положение");
 			}
 			else
 			{
 				string geo = String.Format ("{0},{1}", _currentLocation.Latitude.ToString (), _currentLocation.Longitude.ToString ());
-				AddText(String.Format("[OnLocationChanged] {0}",geo));
+				Log.Debug ("[OnLocationChanged]", geo);
 				GPSRawTV.Text = geo;
 				LocationWorks ();
 			}

@@ -8,7 +8,7 @@ using Android.OS;
 
 namespace AndroidApi15Project
 {
-	[Activity (Label = "AndroidApi15Project", MainLauncher = true)]
+	[Activity (Label = "Пример приложения Xamarin", MainLauncher = true)]
 	public class MainActivity : Activity
 	{
 		protected override void OnCreate (Bundle bundle)
