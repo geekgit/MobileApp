@@ -2,13 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="AndroidApi15Project\GPSActivity.cs">
     <Files>
-      <File FileName="AndroidApi15Project\GPSActivity.cs" Line="107" Column="36" />
-      <File FileName="AndroidApi15Project\Properties\AssemblyInfo.cs" Line="1" Column="1" />
-      <File FileName="AndroidApi15Project\Properties\AndroidManifest.xml" Line="1" Column="1" />
-      <File FileName="AndroidApi15Project\Resources\Resource.designer.cs" Line="1" Column="1" />
-      <File FileName="AndroidApi15Project\MainActivity.cs" Line="1" Column="1" />
-      <File FileName="AndroidApi15Project\Resources\AboutResources.txt" Line="1" Column="1" />
-      <File FileName="AndroidApi15Project\Resources\values\Strings.xml" Line="1" Column="1" />
+      <File FileName="AndroidApi15Project\GPSActivity.cs" Line="12" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
